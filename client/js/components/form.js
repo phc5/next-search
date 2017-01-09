@@ -24,8 +24,7 @@ class Form extends React.Component {
         return (
                 <div className="search-container">
                     <form onSubmit={this.submit}>
-                        <input name="search" type="text" autoComplete="off" required></input>
-                        <input type="submit" value="Google Search"/>
+                        <input className="input" name="search" placeholder="Search Google..." type="text" autoComplete="off" required></input>
                     </form>
                 </div>
         )

@@ -1,0 +1,47 @@
+html{
+    min-height:100%;/* make sure it is at least as tall as the viewport */
+    position:relative;
+}
+
+body {
+	height: 100%;
+	background-image: url('../assets/background.png');
+}
+
+.container {
+	position: absolute;
+	top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    overflow:hidden;
+}
+
+.search-container {
+	text-align: center;
+	position: fixed; /* or absolute */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.input {
+	width: 800px;
+    height: 44px;
+    font-size: 20px;
+    border-radius: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.title {
+	margin: auto;
+	position: fixed;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-family: 'Bungee Shade', cursive;
+    letter-spacing: 5px;
+    font-size: 50px;
+}
