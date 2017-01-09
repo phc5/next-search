@@ -15,8 +15,12 @@ app.use(bodyParser.json());
 app.use(express.static(process.env.CLIENT_PATH));
 
 app.get('/query', (req, res) => {
-    let queries = Query.find().sort({x:-1});
-    return res.status(200).json(queries[0]);
+    Query.find((err, query) => {
+        if (err) {
+            return res.status(400).json(err);
+        }
+        return res.status(200).json(query);
+    });   
 });
 
 app.put('/query', (req, res) => {

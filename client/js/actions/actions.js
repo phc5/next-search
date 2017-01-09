@@ -35,18 +35,24 @@ const submitError = (err) => {
 const getPreviousQuery = () => {
 	return (dispatch) => {
 		let url = 'http://localhost:8080/query';
-		return fetch(url,{
-
+		return fetch(url, {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			}
 		}).then((res) => {
 			if (res.status < 200) {
-				let error = new Error(response.statusText);
-				error.response = response;
+				let error = new Error(res.statusText);
+				error.res = res;
 				throw error;
 			}
-			return response.json();
+			return res.json();
 		}).then((query) => {
+			console.log('here');
+			console.log(query);
 			return dispatch(fetchQuerySuccess(query));
 		}).catch((err) => {
+			console.log(err);
 			return dispatch(fetchQueryError(err));
 		})
 	}
@@ -77,12 +83,6 @@ const onSubmit = (query) => {
 	}
 }
 
-const search = (query) => {
-	return (dispatch) => {
-
-	}
-}
-
 exports.FETCH_QUERY_SUCCESS = FETCH_QUERY_SUCCESS;
 exports.fetchQuerySuccess = fetchQuerySuccess;
 exports.FETCH_QUERY_ERROR = FETCH_QUERY_ERROR;
@@ -95,4 +95,3 @@ exports.submitError = submitError;
 
 exports.getPreviousQuery = getPreviousQuery;
 exports.onSubmit = onSubmit;
-exports.search = search;

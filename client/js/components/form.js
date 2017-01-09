@@ -17,7 +17,7 @@ class Form extends React.Component {
         this.props.dispatch(actions.onSubmit({
             query: event.target.search.value
         }));
-        event.target.reset();
+        console.log(this.props.query);
     }
 
     render() {
