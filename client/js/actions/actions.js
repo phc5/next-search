@@ -48,11 +48,8 @@ const getPreviousQuery = () => {
 			}
 			return res.json();
 		}).then((query) => {
-			console.log('here');
-			console.log(query);
 			return dispatch(fetchQuerySuccess(query));
 		}).catch((err) => {
-			console.log(err);
 			return dispatch(fetchQueryError(err));
 		})
 	}
