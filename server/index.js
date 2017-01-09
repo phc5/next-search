@@ -2,10 +2,12 @@ import 'babel-polyfill';
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
 import Query from '../models/query-model'
 
 const HOST = process.env.HOST;
 const PORT = process.env.PORT || 8080;
+dotenv.load();
 
 console.log(`Server running in ${process.env.NODE_ENV} mode`);
 
@@ -41,7 +43,7 @@ app.put('/query', (req, res) => {
 })
 
 function runServer() {
-    let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://localhost:27017/next-search';
+    let databaseUri = process.env.DATABASE_URI || global.databaseUri || 'mongodb://' + process.env.MLAB_USER + ':' + process.env.MLAB_PASS + '@ds159208.mlab.com:59208/enigma-search';
     mongoose.Promise = global.Promise;
     mongoose.connect(databaseUri).then(function() {
      app.listen(PORT, HOST, (err) => {
