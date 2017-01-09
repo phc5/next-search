@@ -14,7 +14,7 @@ class Form extends React.Component {
 
     submit(event) {
         event.preventDefault();
-        this.props.dispatch(actions.submitAnswer({
+        this.props.dispatch(actions.onSubmit({
             query: event.target.search.value
         }));
         event.target.reset();
@@ -23,11 +23,10 @@ class Form extends React.Component {
     render() {
         return (
                 <div className="search-container">
-                    <div className="spanishWord">{word}
-                        <form onSubmit={this.submit}>
-                            <input name="search" type="text" autoComplete="off"></input>
-                        </form>
-                    </div>
+                    <form onSubmit={this.submit}>
+                        <input name="search" type="text" autoComplete="off" required></input>
+                        <input type="submit" value="Google Search"/>
+                    </form>
                 </div>
         )
     }

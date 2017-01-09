@@ -34,7 +34,7 @@ const submitError = (err) => {
 
 const getPreviousQuery = () => {
 	return (dispatch) => {
-		let url = 'localhost:8080/query';
+		let url = 'http://localhost:8080/query';
 		return fetch(url,{
 
 		}).then((res) => {
@@ -54,10 +54,14 @@ const getPreviousQuery = () => {
 
 const onSubmit = (query) => {
 	return (dispatch) => {
-		let url = 'localhost:8080/query';
+		let url = 'http://localhost:8080/query';
 		return fetch(url,{
+			method: 'PUT',
 			body: JSON.stringify(query),
-			method: 'PUT'
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			}
 		}).then((res) => {
 			if (res.status < 200) {
 				let error = new Error(response.statusText);
@@ -73,6 +77,12 @@ const onSubmit = (query) => {
 	}
 }
 
+const search = (query) => {
+	return (dispatch) => {
+
+	}
+}
+
 exports.FETCH_QUERY_SUCCESS = FETCH_QUERY_SUCCESS;
 exports.fetchQuerySuccess = fetchQuerySuccess;
 exports.FETCH_QUERY_ERROR = FETCH_QUERY_ERROR;
@@ -82,3 +92,7 @@ exports.SUBMIT_SUCCESS = SUBMIT_SUCCESS;
 exports.submitSuccess = submitSuccess;
 exports.SUBMIT_ERROR = SUBMIT_ERROR;
 exports.submitError = submitError;
+
+exports.getPreviousQuery = getPreviousQuery;
+exports.onSubmit = onSubmit;
+exports.search = search;

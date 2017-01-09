@@ -16,7 +16,6 @@ app.use(express.static(process.env.CLIENT_PATH));
 
 app.get('/query', (req, res) => {
     let queries = Query.find().sort({x:-1});
-    console.log(queries);
     return res.status(200).json(queries[0]);
 });
 
