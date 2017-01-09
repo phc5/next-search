@@ -20,7 +20,7 @@ app.get('/query', (req, res) => {
     return res.status(200).json(queries[0]);
 });
 
-app.post('/query', (req, res) => {
+app.put('/query', (req, res) => {
     if (!req.body.query) {
         return res.status(422).json({
             message: 'Missing field: query'
@@ -35,8 +35,6 @@ app.post('/query', (req, res) => {
         }
         return res.status(202).json("Updated");
     })
-    
-
 })
 
 function runServer() {

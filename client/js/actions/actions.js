@@ -1,5 +1,21 @@
 import fetch from 'isomorphic-fetch'
 
+const FETCH_QUERY_SUCCESS = 'FETCH_QUERY_SUCCESS';
+const fetchQuerySuccess = (query) => {
+	return {
+		type: FETCH_QUERY_SUCCESS,
+		query: query
+	};
+};
+
+const FETCH_QUERY_ERROR = 'FETCH_QUERY_ERROR';
+const fetchQueryError = (err) => {
+	return {
+		type: FETCH_QUERY_ERROR,
+		error: err
+	}
+}
+
 const SUBMIT_SUCCESS = 'SUBMIT_SUCCESS';
 const submitSuccess = (query) => {
 	return {
@@ -15,6 +31,52 @@ const submitError = (err) => {
 		error: err
 	}
 }
+
+const getPreviousQuery = () => {
+	return (dispatch) => {
+		let url = 'localhost:8080/query';
+		return fetch(url,{
+
+		}).then((res) => {
+			if (res.status < 200) {
+				let error = new Error(response.statusText);
+				error.response = response;
+				throw error;
+			}
+			return response.json();
+		}).then((query) => {
+			return dispatch(fetchQuerySuccess(query));
+		}).catch((err) => {
+			return dispatch(fetchQueryError(err));
+		})
+	}
+}
+
+const onSubmit = (query) => {
+	return (dispatch) => {
+		let url = 'localhost:8080/query';
+		return fetch(url,{
+			body: JSON.stringify(query),
+			method: 'PUT'
+		}).then((res) => {
+			if (res.status < 200) {
+				let error = new Error(response.statusText);
+				error.response = response;
+				throw error;
+			}
+			return response.json();
+		}).then((query) => {
+			return dispatch(submitSuccess(query));
+		}).catch((err) => {
+			return dispatch(submitError(err));
+		})
+	}
+}
+
+exports.FETCH_QUERY_SUCCESS = FETCH_QUERY_SUCCESS;
+exports.fetchQuerySuccess = fetchQuerySuccess;
+exports.FETCH_QUERY_ERROR = FETCH_QUERY_ERROR;
+exports.fetchQueryError = fetchQueryError;
 
 exports.SUBMIT_SUCCESS = SUBMIT_SUCCESS;
 exports.submitSuccess = submitSuccess;
