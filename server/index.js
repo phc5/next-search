@@ -38,7 +38,7 @@ app.put('/query', (req, res) => {
         if (err) {
             return res.status(500).json({message: 'Internal server error'});
         }
-        return res.status(202).json("Updated");
+        return res.status(200).json({});
     })
 })
 
