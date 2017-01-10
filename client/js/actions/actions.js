@@ -34,7 +34,7 @@ const submitError = (err) => {
 
 const getPreviousQuery = () => {
 	return (dispatch) => {
-		let url = 'https://enigma-search.herokuapp.com/query';
+		let url = 'http://localhost:8080/query';
 		return fetch(url, {
 			headers: {
 				Accept: 'application/json',
@@ -57,7 +57,7 @@ const getPreviousQuery = () => {
 
 const onSubmit = (query) => {
 	return (dispatch) => {
-		let url = 'https://enigma-search.herokuapp.com/query';
+		let url = 'http://localhost:8080/query';
 		return fetch(url,{
 			method: 'PUT',
 			body: JSON.stringify(query),
