@@ -15,7 +15,7 @@ class Form extends React.Component {
     submit(event) {
         event.preventDefault();
         this.props.dispatch(actions.onSubmit({
-            league: event.target.search.value
+            query: event.target.search.value
         }));
     }
 
