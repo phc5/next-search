@@ -17,7 +17,7 @@ class Form extends React.Component {
         this.props.dispatch(actions.onSubmit({
             query: event.target.search.value
         }));
-        document.location = 'https://www.google.com/#q=' + this.props.query[0].query;
+        document.location = 'https://www.youtube.com/results?search_query=' + this.props.query[0].query;
     }
 
     render() {
